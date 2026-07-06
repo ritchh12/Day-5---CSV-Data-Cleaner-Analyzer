@@ -1,6 +1,5 @@
 import csv
 import os 
-from collections import Counter
 
 file_path = r"D:\Downloads\New folder\Genre_Details - Genre_Details.csv"
 
