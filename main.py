@@ -1,5 +1,6 @@
 import csv
 import os 
+from collections import Counter
 
 file_path = r"D:\Downloads\New folder\Genre_Details - Genre_Details.csv"
 
@@ -7,7 +8,7 @@ with open(file=file_path,mode='r') as file :
     
     data = csv.DictReader(file)
     field_names = data.fieldnames
-    
+        
     rows = list(data)
    
     # finding duplicates and creating clean data
@@ -28,13 +29,13 @@ with open(file=file_path,mode='r') as file :
     
 
     # finding missing values
-
     missing ={}
 
     for row in rows:
         for column,value in row.items():
             if value == "":
                 missing[column] = missing.get(column,0) + 1
+                row[column] = "N/A"
     
     
 
@@ -58,11 +59,13 @@ with open(file=file_path,mode='r') as file :
             print(f"{k} :{v}")
     print(50*"*")
 
+#cleaned csv
 
 with open("cleaned.csv",mode="w",newline="") as file:
     writer = csv.DictWriter(file,fieldnames=field_names)
 
     writer.writeheader() #writing the headers
     writer.writerows(clean_rows) #writing the rows
+
     
-    
+
